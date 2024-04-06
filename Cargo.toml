@@ -1,41 +1,25 @@
 [workspace]
-
 members = [
-    "crates/cashu",
-    "crates/cashu-sdk",
+    "bindings/uniffi-bindgen",
+    "crates/*",
 ]
+default-members = ["crates/*"]
 resolver = "2"
 
 [workspace.package]
-license = "BSD-3-Clause"
-homepage = "https://github.com/thesimplekid/cashu-crab"
-repository = "https://github.com/thesimplekid/cashu-crab.git"
-rust-version = "1.70.0" # MSRV
-
-[workspace.metadata]
-authors = ["thesimplekid"]
-edition = "2021"
-description = "cashu-crab"
-readme = "README.md"
-repository = "https://github.com/thesimplekid/cashu-crab"
-license-file = "LICENSE"
-keywords = ["bitcoin", "e-cash", "cashu"]
+authors = ["Yuki Kishimoto <yukikishimoto@protonmail.com>", "thesimplekid <tsk@thesimplekid.com>"]
+homepage = "https://github.com/rust-cashu/cdk"
+repository = "https://github.com/rust-cashu/cdk.git"
+license = "MIT"
+rust-version = "1.64.0" # TODO
 
 [workspace.dependencies]
-serde = { version = "1.0.160", features = ["derive"]}
-serde_json = "1.0.96"
-url = "2.3.1"
-tokio = { version = "1.32", default-features = false }
+thiserror = "1.0"
+tokio = { version = "1", default-features = false }
 tracing = { version = "0.1", default-features = false }
-tracing-subscriber = "0.3"
-uniffi = "0.24"
-thiserror = "1.0.50"
-getrandom = { version = "0.2", features = ["js"] }
+uniffi = "0.27"
 
-[profile]
-
-[profile.ci]
-inherits = "dev"
-incremental = false
-debug = "line-tables-only"
-lto = "off"
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
