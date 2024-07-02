@@ -1,5 +1,8 @@
 # Cashu Development Kit
 
+> [!WARNING]  
+> Archived! Check <https://github.com/cashubtc/cdk>.
+
 ## Project structure
 
 The project is split up into several crates in the `crates/` directory:
